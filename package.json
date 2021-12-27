@@ -1,0 +1,28 @@
+{
+  "name": "seqret",
+  "version": "1.0.0",
+  "description": "secret encoded as protected qr",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": "github.com/avrebarra/seqret",
+  "author": "Avreghly Barra <avreghly@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/node": "^17.0.5",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "autoprefixer": "^10.4.0",
+    "parcel": "^2.0.1",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.7"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1"
+  }
+}
