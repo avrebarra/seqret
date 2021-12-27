@@ -5,7 +5,8 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "remotedeploy": "rm -rf ./dist && parcel build --public-url avrebarra.github.com/seqret && gh-pages -d dist"
   },
   "repository": "github.com/avrebarra/seqret",
   "author": "Avreghly Barra <avreghly@gmail.com>",
