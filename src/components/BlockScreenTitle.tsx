@@ -23,7 +23,7 @@ export const ScreenTitle: React.FC<Props> = (params) => {
   return (
     <>
       <div className=" text-4xl ">
-        <Link className="text-stone-500 font-semibold" to="/">
+        <Link className="text-gray-500 font-semibold" to="/">
           seqret
         </Link>
         /<span className="font-bold">{params.title}</span>
