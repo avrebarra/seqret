@@ -1,6 +1,17 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider } from "baseui";
+
+import { Home } from "./components/ScreenHome";
+import { Create } from "./components/ScreenCreate";
+import { Scan } from "./components/ScreenScan";
+import { Footer } from "./components/BlockFooter";
+
+const engine = new Styletron();
+
 export function App() {
   // context, vars, and states
   const [readiness, setReadiness] = React.useState<boolean>(false);
@@ -14,20 +25,22 @@ export function App() {
   }, [readiness]);
 
   return (
-    <div className="app flex justify-center mx-8 mt-12">
-      <div className="site max-w-3xl w-full">
-        <BrowserRouter>
-          {!readiness ? (
-            <div>not ready</div>
-          ) : (
-            <Routes>
-              <Route path="/" element={<span />} />
-              <Route path="/create" element={<span />} />
-              <Route path="/access" element={<span />} />
-            </Routes>
-          )}
-        </BrowserRouter>
-      </div>
-    </div>
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <div className="app flex justify-center mx-8 mt-12">
+          <div className="site max-w-3xl w-full">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/create" element={<Create />} />
+                <Route path="/scan" element={<Scan />} />
+              </Routes>
+            </BrowserRouter>
+            <br />
+            <Footer />
+          </div>
+        </div>
+      </BaseProvider>
+    </StyletronProvider>
   );
 }
