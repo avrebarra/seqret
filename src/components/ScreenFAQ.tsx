@@ -65,9 +65,9 @@ export const FAQ: React.FC<Props> = ({}) => {
           browser fully loaded it)
         </div>
         <div className="text-normal font-light max-w-md mb-2">
-          <b>Data-wise,</b> this QR store your secrets as encrypted data, so
-          it's security will depends on how strong your passphrase are and how
-          strong algorithm you chose:{" "}
+          <b>Information-wise,</b> this QR store your secrets as encrypted data,
+          so it's security will depends on how strong your passphrase are and
+          how strong algorithm you chose:{" "}
           <a
             className="underline"
             href="https://edu.gcfglobal.org/en/internetsafety/creating-strong-passwords/1/"
@@ -93,8 +93,9 @@ export const FAQ: React.FC<Props> = ({}) => {
         </div>
         <div className="text-normal font-light max-w-md mb-2">
           I feel sorry for you, but I can't and won't do anything about that.
-          Next time you might consider adding some clue about the algorithm in
-          the public notes when creating new QR (be careful with the clue).
+          Next time, when you create new QR, you might consider adding clues
+          about your algorithm in the public notes (but be careful with the
+          clue).
         </div>
       </div>
 

@@ -94,14 +94,14 @@ export const Create: React.FC<Props> = ({}) => {
         <Input
           value={inputKey}
           onChange={(e) => setKey(e.currentTarget.value)}
-          placeholder="enter key or passphrase"
+          placeholder="enter securing key or passphrase"
           type="password"
           clearOnEscape
         />
         <Input
           value={inputNotes}
           onChange={(e) => setInputNotes(e.currentTarget.value)}
-          placeholder="add hint or notes (optional)"
+          placeholder="add public hint or notes (optional)"
           clearOnEscape
         />
         <Slider
@@ -141,7 +141,7 @@ export const Create: React.FC<Props> = ({}) => {
 
             <Input
               startEnhancer="[QR]"
-              placeholder="Untitled QR Code"
+              placeholder="Untitled QR"
               autoFocus={false}
             />
             <ModalBody>
