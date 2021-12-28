@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "baseui/button";
 import { Show } from "baseui/icon";
 
-import config from "../config";
+import CONFIG from "../config";
 
 type Props = {};
 
@@ -23,7 +23,11 @@ export const Home: React.FC<Props> = ({}) => {
   return (
     <>
       <div className="font-bold text-4xl">🙈</div>
-      <div className="font-bold text-4xl">seqret</div>
+      <div className="font-bold text-4xl text-slate-800">
+        <Link className="" to={`/`}>
+          seqret
+        </Link>
+      </div>
       <div className="text-2xl">
         keep a secret{" "}
         <span className="font-light text-xl font-mono bg-red-200">
@@ -33,12 +37,12 @@ export const Home: React.FC<Props> = ({}) => {
       </div>
       <br />
       <div>
-        <Link className="hover:text-neutral-900" to="/create">
+        <Link className="hover:text-neutral-900" to={`/create`}>
           <Button size="large">Create New</Button>
         </Link>
       </div>
       <div>
-        <Link className="hover:text-neutral-900" to="/scan">
+        <Link className="hover:text-neutral-900" to={`/scan`}>
           <Button endEnhancer={() => <Show size={20} />}>
             Read From QR Code
           </Button>

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import config from "../config";
+import CONFIG from "../config";
 
 type Props = {};
 
@@ -20,8 +20,15 @@ export const Footer: React.FC<Props> = ({}) => {
     <>
       <div className="footer mb-4 text-sm text-gray-400">
         <div className="mb-3">
-          <div> made with, um fingers, by @avrébarra</div>
-          <div> check github repository</div>
+          <div>
+            made using, um fingers, by
+            <a href="https://avrebarra.github.io/">@avrébarra</a>
+          </div>
+          <div>
+            <a href="https://github.com/avrebarra/seqret">
+              check out github repository
+            </a>
+          </div>
         </div>
       </div>
     </>

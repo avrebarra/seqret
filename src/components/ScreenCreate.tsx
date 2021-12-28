@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import * as QRCode from "qrcode.react";
-import * as crypto from "crypto-js";
 
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
@@ -12,7 +10,9 @@ import { Modal, ModalBody } from "baseui/modal";
 import { ErrorModal } from "./BlockErrorModal";
 import { ScreenTitle } from "./BlockScreenTitle";
 
-import config from "../config";
+import * as encrypt from "../services/encryptor";
+import * as qrbuilder from "../services/qrbuilder";
+import CONFIG from "../config";
 
 type Props = {};
 
@@ -35,20 +35,14 @@ export const Create: React.FC<Props> = ({}) => {
       id: "AESCBC",
       label: "AES-CBC",
       func: (p: { value: string; key: string }): string => {
-        var out = crypto.AES.encrypt(p.value, p.key, {
-          mode: crypto.mode.CBC,
-        });
-        return out.toString();
+        return encrypt.encryptAESCBC(p.key, p.value);
       },
     },
     {
       id: "AESECB",
       label: "AES-ECB",
       func: (p: { value: string; key: string }): string => {
-        var out = crypto.AES.encrypt(p.value, p.key, {
-          mode: crypto.mode.ECB,
-        });
-        return out.toString();
+        return encrypt.encryptAESECB(p.key, p.value);
       },
     },
   ];
@@ -76,7 +70,10 @@ export const Create: React.FC<Props> = ({}) => {
     const secretenc = alg.func({ key: inputKey, value: inputSecret });
 
     // build complete string
-    const qrstr = `${inputNotes}|유/匷|${secretenc}`;
+    const qrstr = qrbuilder.constructQRString({
+      notes: inputNotes,
+      secret: secretenc,
+    });
     setOutputQRString(qrstr);
 
     // show modal
@@ -129,11 +126,9 @@ export const Create: React.FC<Props> = ({}) => {
         />
 
         <div>
-          <Link className="hover:text-neutral-900" to="/create">
-            <Button onClick={() => funcGenerateQR()} size="large">
-              Create QR Code
-            </Button>
-          </Link>
+          <Button onClick={() => funcGenerateQR()} size="large">
+            Create QR Code
+          </Button>
         </div>
 
         {/* modals */}
@@ -159,7 +154,7 @@ export const Create: React.FC<Props> = ({}) => {
                 </div>
                 <br />
                 <Button onClick={() => setStateShowQR(false)}>
-                  Back to Creator
+                  Back to builder
                 </Button>
               </div>
             </ModalBody>

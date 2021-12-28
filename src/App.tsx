@@ -10,6 +10,8 @@ import { Create } from "./components/ScreenCreate";
 import { Scan } from "./components/ScreenScan";
 import { Footer } from "./components/BlockFooter";
 
+import config from "./config";
+
 const engine = new Styletron();
 
 export function App() {
@@ -29,7 +31,7 @@ export function App() {
       <BaseProvider theme={LightTheme}>
         <div className="app flex justify-center mx-8 mt-12">
           <div className="site max-w-3xl w-full">
-            <BrowserRouter>
+            <BrowserRouter basename={config.SUB_DIR_PATH}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />

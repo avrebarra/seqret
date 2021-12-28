@@ -3,7 +3,7 @@ import * as React from "react";
 import { Modal, ModalBody } from "baseui/modal";
 import { Button } from "baseui/button";
 
-import config from "../config";
+import CONFIG from "../config";
 
 type Props = {
   message: string;
