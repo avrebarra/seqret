@@ -8,6 +8,7 @@ import { LightTheme, BaseProvider } from "baseui";
 import { Home } from "./components/ScreenHome";
 import { Create } from "./components/ScreenCreate";
 import { Scan } from "./components/ScreenScan";
+import { FAQ } from "./components/ScreenFAQ";
 import { Footer } from "./components/BlockFooter";
 
 import config from "./config";
@@ -36,6 +37,7 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/scan" element={<Scan />} />
+                <Route path="/faqs" element={<FAQ />} />
               </Routes>
             </BrowserRouter>
             <br />

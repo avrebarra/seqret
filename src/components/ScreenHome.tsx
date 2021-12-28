@@ -22,7 +22,12 @@ export const Home: React.FC<Props> = ({}) => {
 
   return (
     <>
-      <div className="font-bold text-4xl">🙈</div>
+      {/* <div className="font-bold text-4xl">🙈</div> */}
+      <img
+        className="w-16"
+        src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/facebook/65/see-no-evil-monkey_1f648.png"
+        alt=""
+      />
       <div className="font-bold text-4xl text-slate-800">
         <Link className="" to={`/`}>
           seqret
@@ -46,6 +51,11 @@ export const Home: React.FC<Props> = ({}) => {
           <Button endEnhancer={() => <Show size={20} />}>
             Read From QR Code
           </Button>
+        </Link>
+      </div>
+      <div>
+        <Link to={`/faqs`}>
+          <Button kind="secondary">Open the FAQs</Button>
         </Link>
       </div>
     </>
