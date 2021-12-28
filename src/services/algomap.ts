@@ -3,7 +3,7 @@ import * as encrypt from "../services/encryptor";
 export const algorithmMapping = [
   {
     id: "AESCBC",
-    label: "AES-CBC (standard)",
+    label: "Standard AES-CBC",
     funcEnc: (p: { value: string; key: string }): string => {
       return encrypt.encryptAESCBC(p.key, p.value);
     },
@@ -13,7 +13,7 @@ export const algorithmMapping = [
   },
   {
     id: "AESECB",
-    label: "AES-ECB (standard)",
+    label: "Standard AES-ECB",
     funcEnc: (p: { value: string; key: string }): string => {
       return encrypt.encryptAESECB(p.key, p.value);
     },
