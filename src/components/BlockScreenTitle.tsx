@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import CONFIG from "../config";
+import config from "../config";
 
 type Props = {
   title: string;
@@ -24,7 +24,7 @@ export const ScreenTitle: React.FC<Props> = (params) => {
     <>
       <div className=" text-4xl ">
         <Link className="text-slate-700 font-semibold" to={`/`}>
-          seqret
+          ‹ seqret
         </Link>
         /<span className="font-bold">{params.title}</span>
       </div>

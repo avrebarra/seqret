@@ -12,7 +12,7 @@ import { ScreenTitle } from "./BlockScreenTitle";
 
 import * as encrypt from "../services/encryptor";
 import * as qrbuilder from "../services/qrbuilder";
-import CONFIG from "../config";
+import config from "../config";
 
 type Props = {};
 
@@ -94,6 +94,7 @@ export const Create: React.FC<Props> = ({}) => {
           value={inputAlg}
           placeholder="select algorithm"
           onChange={(params) => setAlg(params.value)}
+          clearable={false}
         />
         <Textarea
           clearable={true}
@@ -106,10 +107,10 @@ export const Create: React.FC<Props> = ({}) => {
           value={inputKey}
           onChange={(e) => setKey(e.currentTarget.value)}
           placeholder="enter key or passphrase"
+          type="password"
           clearOnEscape
         />
         <Input
-          clearable={true}
           value={inputNotes}
           onChange={(e) => setInputNotes(e.currentTarget.value)}
           placeholder="add hint or notes (optional)"
@@ -149,7 +150,7 @@ export const Create: React.FC<Props> = ({}) => {
           >
             <ModalBody>
               <div className="text-center">
-                <div className="flex flex-col space-y-2 p-10">
+                <div className="flex flex-col space-y-2 p-5">
                   <QRCode size={inputSize[0]} value={outputQRString} />
                 </div>
                 <br />

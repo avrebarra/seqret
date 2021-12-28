@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CONFIG from "../config";
+import config from "../config";
 
 type Props = {};
 
@@ -18,11 +18,12 @@ export const Footer: React.FC<Props> = ({}) => {
 
   return (
     <>
+      <div className="text-gray-400">. . . . . . . . </div>
       <div className="footer mb-4 text-sm text-gray-400">
         <div className="mb-3">
           <div>
             made using, um fingers, by
-            <a href="https://avrebarra.github.io/">@avrébarra</a>
+            <a href="https://avrebarra.github.io/"> @avrébarra</a>
           </div>
           <div>
             <a href="https://github.com/avrebarra/seqret">

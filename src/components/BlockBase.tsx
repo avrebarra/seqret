@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CONFIG from "../config";
+import config from "../config";
 
 type Props = {};
 

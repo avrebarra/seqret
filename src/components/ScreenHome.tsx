@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "baseui/button";
 import { Show } from "baseui/icon";
 
-import CONFIG from "../config";
+import config from "../config";
 
 type Props = {};
 
