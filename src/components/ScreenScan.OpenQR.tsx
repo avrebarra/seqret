@@ -50,10 +50,16 @@ export const OpenQR: React.FC<Props> = (p) => {
     if (alg == undefined) return funcShowErr("Cannot find selected algorithm!");
 
     // decrypt secret with key
-    const secretDecrypted = alg.funcDec({
-      key: inputKey,
-      encvalue: QRData?.secret,
-    });
+    let secretDecrypted;
+    try {
+      secretDecrypted = alg.funcDec({
+        key: inputKey,
+        encvalue: QRData?.secret,
+      });
+    } catch (error) {
+      const errmsg = `Parsing errored. Are you sure your algorithm and key correct? Got error: ${error}`;
+      return funcShowErr(errmsg);
+    }
     if (secretDecrypted == "") {
       return funcShowErr(
         "Parsing failed. Are you sure your algorithm and key correct?"
