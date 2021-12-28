@@ -10,8 +10,8 @@ import { Modal, ModalBody } from "baseui/modal";
 import { ErrorModal } from "./BlockErrorModal";
 import { ScreenTitle } from "./BlockScreenTitle";
 
-import * as encrypt from "../services/encryptor";
 import * as qrbuilder from "../services/qrbuilder";
+import * as algo from "../services/algomap";
 import config from "../config";
 
 type Props = {};
@@ -30,22 +30,10 @@ export const Create: React.FC<Props> = ({}) => {
   const [inputSize, setInputSize] = React.useState<number[]>([DEFAULT_QR_SIZE]);
   const [outputQRString, setOutputQRString] = React.useState<string>("");
 
-  const algorithms = [
-    {
-      id: "AESCBC",
-      label: "AES-CBC",
-      func: (p: { value: string; key: string }): string => {
-        return encrypt.encryptAESCBC(p.key, p.value);
-      },
-    },
-    {
-      id: "AESECB",
-      label: "AES-ECB",
-      func: (p: { value: string; key: string }): string => {
-        return encrypt.encryptAESECB(p.key, p.value);
-      },
-    },
-  ];
+  const algolist = algo.algorithmMapping.map((e) => ({
+    id: e.id,
+    label: e.label,
+  }));
 
   // helper funcs
   const funcLoadData = async () => {};
@@ -56,18 +44,18 @@ export const Create: React.FC<Props> = ({}) => {
   const funcGenerateQR = async () => {
     // prep and
     if (inputAlg == undefined)
-      return funcShowErr("Please choose an algorithm to use.");
+      return funcShowErr("Please choose encryption method to use.");
     if (inputSecret == "")
       return funcShowErr("Please specify secret to encode.");
     if (inputKey == "")
       return funcShowErr("Please specify a secret key or passphrase.");
 
     // select encryptor
-    const alg = algorithms.find((e) => e.id == inputAlg[0].id);
+    const alg = algo.algorithmMapping.find((e) => e.id == inputAlg[0].id);
     if (alg == undefined) return funcShowErr("Cannot find selected algorithm!");
 
     // encrypt secret with key
-    const secretenc = alg.func({ key: inputKey, value: inputSecret });
+    const secretenc = alg.funcEnc({ key: inputKey, value: inputSecret });
 
     // build complete string
     const qrstr = qrbuilder.constructQRString({
@@ -90,9 +78,9 @@ export const Create: React.FC<Props> = ({}) => {
       <ScreenTitle title="create" subtitle="create a new secret" />
       <div className="flex flex-col space-y-2">
         <Select
-          options={algorithms}
+          options={algolist}
           value={inputAlg}
-          placeholder="select algorithm"
+          placeholder="select encryption method"
           onChange={(params) => setAlg(params.value)}
           clearable={false}
         />
@@ -144,21 +132,29 @@ export const Create: React.FC<Props> = ({}) => {
           <Modal
             animate={true}
             size="auto"
-            closeable={false}
+            closeable={true}
             onClose={() => setStateShowQR(false)}
             isOpen={stateShowQR}
           >
+            <Input
+              startEnhancer="[QR]"
+              placeholder="Untitled QR Code"
+              clearable={true}
+              clearOnEscape
+            />
             <ModalBody>
-              <div className="text-center">
-                <div className="flex flex-col space-y-2 p-5">
+              <div className="flex flex-col space-y-2 text-center items-center">
+                <span className="p-5">
                   <QRCode size={inputSize[0]} value={outputQRString} />
-                </div>
-                <br />
-                <Button onClick={() => setStateShowQR(false)}>
-                  Back to builder
-                </Button>
+                </span>
               </div>
             </ModalBody>
+            <div
+              className="bg-black text-slate-50 text-lg text-center p-5 cursor-pointer"
+              onClick={() => setStateShowQR(false)}
+            >
+              Back to Creator
+            </div>
           </Modal>
         </div>
       </div>

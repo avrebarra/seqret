@@ -6,7 +6,9 @@ export const encryptAESCBC = (key: string, value: string): string => {
 };
 
 export const decryptAESCBC = (key: string, enc: string): string => {
-  return crypto.AES.decrypt(enc, key, { mode: crypto.mode.CBC }).toString();
+  return crypto.AES.decrypt(enc, key, { mode: crypto.mode.CBC }).toString(
+    crypto.enc.Utf8
+  );
 };
 
 // AES ECB
@@ -15,5 +17,7 @@ export const encryptAESECB = (key: string, value: string): string => {
 };
 
 export const decryptAESECB = (key: string, enc: string): string => {
-  return crypto.AES.decrypt(enc, key, { mode: crypto.mode.ECB }).toString();
+  return crypto.AES.decrypt(enc, key, { mode: crypto.mode.ECB }).toString(
+    crypto.enc.Utf8
+  );
 };
