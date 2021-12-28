@@ -136,11 +136,13 @@ export const Create: React.FC<Props> = ({}) => {
             onClose={() => setStateShowQR(false)}
             isOpen={stateShowQR}
           >
+            {/* hack to distract autofocus from input */}
+            <a href="http://"></a>
+
             <Input
               startEnhancer="[QR]"
               placeholder="Untitled QR Code"
-              clearable={true}
-              clearOnEscape
+              autoFocus={false}
             />
             <ModalBody>
               <div className="flex flex-col space-y-2 text-center items-center">
