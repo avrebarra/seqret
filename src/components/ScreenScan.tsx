@@ -42,15 +42,17 @@ export const Scan: React.FC<Props> = ({}) => {
       ) : null}
 
       {/* show open qr */}
-      {!rawSecret && rawQR ? (
-        <OpenQR
-          rawQR={rawQR}
-          onSecretOpenSuccess={(openres) => {
-            setRawSecret(openres);
-            console.log(openres);
-          }}
-          onSecretOpenError={(e) => funcShowErr(e.message)}
-        />
+      {rawQR ? (
+        // hide using css if secret already read
+        <div className={rawSecret ? "hidden" : ""}>
+          <OpenQR
+            rawQR={rawQR}
+            onSecretOpenSuccess={(openres) => {
+              setRawSecret(openres);
+            }}
+            onSecretOpenError={(e) => funcShowErr(e.message)}
+          />
+        </div>
       ) : null}
 
       {/* show show secret */}

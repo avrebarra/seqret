@@ -54,6 +54,11 @@ export const OpenQR: React.FC<Props> = (p) => {
       key: inputKey,
       encvalue: QRData?.secret,
     });
+    if (secretDecrypted == "") {
+      return funcShowErr(
+        "Parsing failed. Are you sure your algorithm and key correct?"
+      );
+    }
 
     p.onSecretOpenSuccess(secretDecrypted);
   };

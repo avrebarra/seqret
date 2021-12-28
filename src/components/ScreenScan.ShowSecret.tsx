@@ -29,17 +29,9 @@ export const ShowSecret: React.FC<Props> = (p) => {
       <div className="flex flex-col space-y-2">
         <Textarea value={secret} />
         <div>
-          <Button
-            kind="primary"
-            onClick={() => p.onBackButtonClick()}
-            size="large"
-          >
-            Previous Menu
-          </Button>
-
-          <Link to="/scan">
-            <Button kind="secondary" size="large">
-              Scan Other QR
+          <Link to="/">
+            <Button kind="primary" size="large">
+              Back to Home
             </Button>
           </Link>
         </div>

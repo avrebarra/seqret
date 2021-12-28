@@ -25,7 +25,6 @@ export const ScanQR: React.FC<Props> = (p) => {
       p.onScanSuccess(text);
 
       // pause reader
-      console.log("success");
       scanner.clear();
 
       return;
