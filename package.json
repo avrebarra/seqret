@@ -7,7 +7,7 @@
   "pwaManifest": {
     "name": "Seqret - Secrets",
     "shortName": "Seqret",
-    "theme": "#add8e6",
+    "theme": "#000000",
     "generateIconOptions": {
       "baseIcon": "./public/icon.png",
       "sizes": [
