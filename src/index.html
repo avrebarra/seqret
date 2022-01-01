@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <title>Seqret - Secrets in a QR</title>
-    <meta name="description" content="Utility to keep secrets as encrypted QR codes">
+    <meta
+      name="description"
+      content="Utility to keep secrets as encrypted QR codes"
+    />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <link
       rel="shortcut icon"
@@ -20,4 +23,33 @@
     <div id="app"></div>
     <script type="module" src="index.tsx"></script>
   </body>
+  <script>
+    const sw = "service-worker.js";
+
+    navigator.serviceWorker
+      .register(sw)
+      .then((registration) => {
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) {
+            return;
+          }
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === "installed") {
+              if (navigator.serviceWorker.controller) {
+                console.log(
+                  "New content is available and will be used when all " +
+                    "tabs for this page are closed. See https://bit.ly/CRA-PWA."
+                );
+              } else {
+                console.log("Content is cached for offline use.");
+              }
+            }
+          };
+        };
+      })
+      .catch((error) => {
+        console.error("Error during service worker registration:", error);
+      });
+  </script>
 </html>
