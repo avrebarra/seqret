@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { toaster, ToasterContainer } from "baseui/toast";
+import { toaster } from "baseui/toast";
 import { ScreenTitle } from "./BlockScreenTitle";
 import { ScanQR } from "./ScreenScan.ScanQR";
 import { OpenQR } from "./ScreenScan.OpenQR";
@@ -10,7 +10,7 @@ import config from "../config";
 
 type Props = {};
 
-export const Scan: React.FC<Props> = ({}) => {
+export const Scan: React.FC<Props> = ({ }) => {
   // context, vars, and states
   const [readiness, setReadiness] = React.useState<boolean>(false);
   const [rawQR, setRawQR] = React.useState<string>("");
@@ -20,7 +20,7 @@ export const Scan: React.FC<Props> = ({}) => {
   const funcShowErr = async (msg: string) => {
     toaster.negative(msg, {});
   };
-  const funcLoad = async () => {};
+  const funcLoad = async () => { };
 
   // effects
   React.useEffect(() => {
@@ -29,7 +29,6 @@ export const Scan: React.FC<Props> = ({}) => {
 
   return (
     <>
-      <ToasterContainer />
       <ScreenTitle title="scan" subtitle="scan secret from a qr" />
 
       {/* show scan qr */}

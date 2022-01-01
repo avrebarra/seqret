@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as QRCode from "qrcode.react";
 
+import { toaster } from "baseui/toast";
 import { Input } from "baseui/input";
 import { Button } from "baseui/button";
 import { Textarea } from "baseui/textarea";
 import { Select, Value } from "baseui/select";
 import { Slider } from "baseui/slider";
 import { Modal, ModalBody } from "baseui/modal";
-import { ErrorModal } from "./BlockErrorModal";
 import { ScreenTitle } from "./BlockScreenTitle";
 
 import * as qrbuilder from "../services/qrbuilder";
@@ -16,12 +16,11 @@ import config from "../config";
 
 type Props = {};
 
-export const Create: React.FC<Props> = ({}) => {
+export const Create: React.FC<Props> = ({ }) => {
   // context, vars, and states
   const DEFAULT_QR_SIZE = 256;
 
   const [readiness, setReadiness] = React.useState<boolean>(false);
-  const [errstr, setErrstr] = React.useState<string>("");
   const [stateShowQR, setStateShowQR] = React.useState<boolean>(false);
   const [inputAlg, setAlg] = React.useState<Value | undefined>(undefined);
   const [inputSecret, setInputSecret] = React.useState<string>("");
@@ -36,10 +35,9 @@ export const Create: React.FC<Props> = ({}) => {
   }));
 
   // helper funcs
-  const funcLoadData = async () => {};
-  const funcShowErr = async (errormsg: string) => {
-    console.log(errormsg);
-    setErrstr(errormsg);
+  const funcLoadData = async () => { };
+  const funcShowErr = async (msg: string) => {
+    toaster.negative(msg, {});
   };
   const funcGenerateQR = async () => {
     // prep and
@@ -121,12 +119,6 @@ export const Create: React.FC<Props> = ({}) => {
         </div>
 
         {/* modals */}
-
-        <ErrorModal
-          message={errstr}
-          shown={errstr != ""}
-          onClose={() => setErrstr("")}
-        />
 
         <div>
           <Modal

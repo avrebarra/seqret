@@ -1,5 +1,6 @@
 .idea/
 .vscode/
+.parcel-cache/
 .env
 node_modules/
 build

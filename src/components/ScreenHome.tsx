@@ -8,12 +8,12 @@ import config from "../config";
 
 type Props = {};
 
-export const Home: React.FC<Props> = ({}) => {
+export const Home: React.FC<Props> = ({ }) => {
   // context, vars, and states
   const [readiness, setReadiness] = React.useState<boolean>(false);
 
   // helper funcs
-  const funcLoadData = async () => {};
+  const funcLoadData = async () => { };
 
   // effects
   React.useEffect(() => {
@@ -28,7 +28,7 @@ export const Home: React.FC<Props> = ({}) => {
         src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/facebook/65/see-no-evil-monkey_1f648.png"
         alt=""
       />
-      <div className="font-bold text-4xl text-slate-800">
+      <div className="font-bold text-4xl">
         <Link className="" to={`/`}>
           seqret
         </Link>

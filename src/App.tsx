@@ -1,15 +1,17 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazily } from "react-lazily";
 
+import { ToasterContainer } from "baseui/toast";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider } from "baseui";
 
-import { Home } from "./components/ScreenHome";
-import { Create } from "./components/ScreenCreate";
-import { Scan } from "./components/ScreenScan";
-import { FAQ } from "./components/ScreenFAQ";
 import { Footer } from "./components/BlockFooter";
+const { Home } = lazily(() => import("./components/ScreenHome"));
+const { Create } = lazily(() => import("./components/ScreenCreate"));
+const { Scan } = lazily(() => import("./components/ScreenScan"));
+const { FAQ } = lazily(() => import("./components/ScreenFAQ"));
 
 import config from "./config";
 
@@ -21,6 +23,7 @@ export function App() {
 
   // helper funcs
   const funcLoadData = async () => {};
+  const funcRenderLoader = () => <p>Loading...</p>;
 
   // effects
   React.useEffect(() => {
@@ -30,15 +33,18 @@ export function App() {
   return (
     <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
+        <ToasterContainer />
         <div className="app flex justify-center mx-8 mt-12">
           <div className="site max-w-3xl w-full">
             <BrowserRouter basename={config.SUB_DIR_PATH}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/create" element={<Create />} />
-                <Route path="/scan" element={<Scan />} />
-                <Route path="/faqs" element={<FAQ />} />
-              </Routes>
+              <React.Suspense fallback={funcRenderLoader()}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/create" element={<Create />} />
+                  <Route path="/scan" element={<Scan />} />
+                  <Route path="/faqs" element={<FAQ />} />
+                </Routes>
+              </React.Suspense>
             </BrowserRouter>
             <br />
             <Footer />
