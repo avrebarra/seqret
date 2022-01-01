@@ -5,9 +5,9 @@
   "homepage": "https://avrebarra.github.io/seqret",
   "source": "src/index.html",
   "pwaManifest": {
-    "name": "Seqret - Secrets",
+    "name": "Seqret - Secrets as protected QRs",
     "shortName": "Seqret",
-    "theme": "#000000",
+    "theme": "#FFFFFF",
     "generateIconOptions": {
       "baseIcon": "./public/icon.png",
       "sizes": [
