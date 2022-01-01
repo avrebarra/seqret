@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --no-source-maps && workbox generateSW",
+    "build": "parcel build --public-url ./ --no-source-maps && workbox generateSW",
     "remotedeploy": "rm -rf ./dist && yarn build && gh-pages -d dist"
   },
   "repository": "github.com/avrebarra/seqret",
