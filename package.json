@@ -1,11 +1,11 @@
 {
   "name": "seqret",
   "version": "1.0.0",
-  "description": "secret encoded as protected qr",
+  "description": "Secrets as protected QRs",
   "homepage": "https://avrebarra.github.io/seqret",
   "source": "src/index.html",
   "pwaManifest": {
-    "name": "Seqret App",
+    "name": "Seqret - Secrets",
     "shortName": "Seqret",
     "theme": "#add8e6",
     "generateIconOptions": {
@@ -20,8 +20,8 @@
   },
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --public-url ./ --no-source-maps && workbox generateSW",
-    "remotedeploy": "rm -rf ./dist && yarn build && gh-pages -d dist"
+    "build": "parcel build && workbox generateSW",
+    "remotedeploy": "rm -rf ./dist && parcel build --public-url ./ --no-source-maps && workbox generateSW && gh-pages -d dist"
   },
   "repository": "github.com/avrebarra/seqret",
   "author": "Avreghly Barra <avreghly@gmail.com>",
