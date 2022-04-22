@@ -7,23 +7,21 @@ on:
   push:
     branches: [ master, cisetup ]
 
+env:
+  SHARP_INSTALL_FORCE: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: yarn install dependencies
-      uses: borales/actions-yarn@v2.3.0
+    - name: setup node
+      uses: actions/setup-node@v3
       with:
-        cmd: install # will run `yarn install` command
+        node-version: '17'
+        cache: 'yarn'
     - name: yarn install global deps (workbox-cli)
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: global add workbox-cli
-    - name: fix sharp issue (needed)
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: add sharp@^0.25.2 --force
+      run: yarn global add workbox-cli
     - name: make build app
       run: make build
     - name: recreate gh-pages branch
@@ -31,4 +29,4 @@ jobs:
     - name: promote build
       run: mv dist /tmp/dist && ls | grep -v ".git" | xargs rm -r && mv /tmp/dist/* .
     - name: publish build
-      run: git commit -m "updated build" && git push
+      run: git commit -m "updated build" && git push --force
