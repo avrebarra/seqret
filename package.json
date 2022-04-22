@@ -27,6 +27,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@parcel/config-default": "^2.5.0",
+    "@parcel/core": "^2.5.0",
     "@parcel/packager-raw-url": "2.5.0",
     "@parcel/packager-xml": "2.5.0",
     "@types/crypto-js": "^4.0.2",

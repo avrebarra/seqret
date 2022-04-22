@@ -15,18 +15,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: setup node
+    - name: Setup node
       uses: actions/setup-node@v3
       with:
         node-version: '17'
         cache: 'yarn'
-    - name: yarn install global deps (workbox-cli)
+    - name: Install global deps (workbox-cli)
       run: yarn global add workbox-cli
-    - name: make build app
+    - name: Build app
       run: make build
-    - name: recreate gh-pages branch
+    - name: Recreate gh-pages branch
       run: git branch -D gh-pages && git checkout -b gh-pages
-    - name: promote build
+    - name: Promote build
       run: mv dist /tmp/dist && ls | grep -v ".git" | xargs rm -r && mv /tmp/dist/* .
-    - name: publish build
+    - name: Publish build
       run: git commit -m "updated build" && git push --force
