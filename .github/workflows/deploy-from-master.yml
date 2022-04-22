@@ -20,6 +20,8 @@ jobs:
       with:
         node-version: '17'
         # cache: 'yarn'
+    - name: Install dependencies
+      run: yarn
     # - name: Install global deps (workbox-cli)
     #   run: yarn global add workbox-cli
     - name: Build app
