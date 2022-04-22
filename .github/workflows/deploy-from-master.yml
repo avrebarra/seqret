@@ -22,10 +22,10 @@ jobs:
         # cache: 'yarn'
     - name: Install dependencies
       run: yarn
-    # - name: Install global deps (workbox-cli)
-    #   run: yarn global add workbox-cli
+    - name: Install global deps (workbox-cli)
+      run: yarn global add workbox-cli
     - name: Build app
-      run: make npxbuild
+      run: make build
     - name: Recreate gh-pages branch
       run: git branch -D gh-pages && git checkout -b gh-pages
     - name: Promote build
