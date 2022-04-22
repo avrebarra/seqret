@@ -5,11 +5,12 @@
 
 ## watch: Start development mode with watcher
 watch:
-	yarn start
+	yarn parcel
 
 ## build: Build app
 build:
-	yarn build
+	yarn parcel build --public-url /${APP_BASE_PATH} --no-source-maps
+	workbox generateSW
 
 ## deploy: Deploy binary to server
 deploy:
