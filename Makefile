@@ -9,7 +9,7 @@ watch:
 
 ## build: Build app
 build:
-	yarn parcel build --public-url ./${APP_BASE_PATH} --no-source-maps
+	yarn parcel build --public-url /${APP_BASE_PATH} --no-source-maps
 	workbox generateSW
 
 ## deploy: Deploy binary to server
