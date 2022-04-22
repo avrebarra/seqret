@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '17'
-        cache: 'yarn'
+        # cache: 'yarn'
     # - name: Install global deps (workbox-cli)
     #   run: yarn global add workbox-cli
     - name: Build app
