@@ -27,7 +27,7 @@ jobs:
     - name: Build app
       run: make build
     - name: Recreate gh-pages branch
-      run: git branch -D gh-pages && git checkout -b gh-pages
+      run: git checkout -b gh-pages
     - name: Promote build
       run: mv dist /tmp/dist && ls | grep -v ".git" | xargs rm -r && mv /tmp/dist/* .
     - name: Publish build
