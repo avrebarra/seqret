@@ -9,7 +9,7 @@ on:
 
 env:
   SHARP_INSTALL_FORCE: true
-  PARCEL_ROUTINGS_BASE_PATH: /seqret
+  PARCEL_ROUTINGS_BASE_PATH: seqret
 
 jobs:
   build:
@@ -32,4 +32,4 @@ jobs:
     - name: Promote build
       run: mv dist /tmp/dist && ls | grep -v ".git" | xargs rm -r && mv /tmp/dist/* .
     - name: Publish build
-      run: git config --global user.email "ci@github.com" && git config --global user.name "Github CI" && git add --all && git commit -m "updated build" && git push --force
+      run: git config --global user.email "ci@github.com" && git config --global user.name "Github CI" && git add --all && git commit -m "updated build" && git push --set-upstream origin gh-pages --force
