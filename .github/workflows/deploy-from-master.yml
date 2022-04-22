@@ -5,7 +5,7 @@ name: deploy from master
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, cisetup ]
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
       with:
         cmd: global add workbox-cli
     - name: fix sharp issue (needed)
-      run: rm -rf node_modules/sharp && npm i --platform=linux sharp
+      run: npm i --platform=linux sharp
     - name: make build app
       run: make build
     - name: recreate gh-pages branch
