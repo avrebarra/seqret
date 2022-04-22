@@ -11,6 +11,10 @@ watch:
 build:
 	yarn build
 
+## npxbuild: Build app
+npxbuild:
+	yarn npxbuild
+
 ## deploy: Deploy binary to server
 deploy:
 	@echo "Command to deploy script distribute atrifacts to cloud, on-prem or kubernetes clusters "

@@ -20,10 +20,10 @@ jobs:
       with:
         node-version: '17'
         cache: 'yarn'
-    - name: Install global deps (workbox-cli)
-      run: yarn global add workbox-cli
+    # - name: Install global deps (workbox-cli)
+    #   run: yarn global add workbox-cli
     - name: Build app
-      run: make build
+      run: make npxbuild
     - name: Recreate gh-pages branch
       run: git branch -D gh-pages && git checkout -b gh-pages
     - name: Promote build

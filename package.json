@@ -20,6 +20,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build && workbox generateSW",
+    "npxbuild": "npx parcel build && npx workbox generateSW",
     "remotedeploy": "rm -rf ./dist && parcel build --public-url ./ --no-source-maps && workbox generateSW && gh-pages -d dist"
   },
   "repository": "github.com/avrebarra/seqret",
@@ -31,6 +32,7 @@
     "@parcel/core": "^2.5.0",
     "@parcel/packager-raw-url": "2.5.0",
     "@parcel/packager-xml": "2.5.0",
+    "@parcel/transformer-typescript-tsc": "^2.5.0",
     "@types/crypto-js": "^4.0.2",
     "@types/node": "^17.0.5",
     "@types/node-rsa": "^1.1.1",
