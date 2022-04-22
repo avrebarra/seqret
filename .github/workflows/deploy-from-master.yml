@@ -21,7 +21,9 @@ jobs:
       with:
         cmd: global add workbox-cli
     - name: fix sharp issue (needed)
-      run: npm i --platform=linux sharp
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: add sharp@^0.25.2 --force
     - name: make build app
       run: make build
     - name: recreate gh-pages branch
