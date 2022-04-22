@@ -1,5 +1,3 @@
-const CONFIG = {
-  SUB_DIR_PATH: "",
-};
+const CONFIG = {};
 
 export default CONFIG;
