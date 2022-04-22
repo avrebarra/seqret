@@ -38,11 +38,12 @@
     "@types/react-measure": "^2.0.8",
     "autoprefixer": "^10.4.0",
     "parcel": "^2.0.1",
-    "parcel-config-pwa-manifest": "^0.1.0",
+    "parcel-config-pwa-manifest": "^0.1.1",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.7"
   },
   "dependencies": {
+    "@parcel/config-default": "^2.5.0",
     "@types/styletron-engine-atomic": "^1.1.1",
     "@types/styletron-react": "^5.0.3",
     "@types/styletron-standard": "^2.0.2",
