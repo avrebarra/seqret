@@ -9,10 +9,10 @@ on:
 
 env:
   SHARP_INSTALL_FORCE: true
-  PARCEL_ROUTINGS_BASE_PATH: seqret
+  PARCEL_ROUTINGS_BASE_PATH: /seqret/
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
