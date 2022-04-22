@@ -2,7 +2,7 @@
   "name": "seqret",
   "version": "1.1.0",
   "description": "Secrets as protected QRs",
-  "homepage": "https://avrebarra.github.io/seqret",
+  "homepage": "https://avrebarra.github.io/seqret/",
   "source": "src/index.html",
   "pwaManifest": {
     "shortName": "Seqret",
@@ -17,17 +17,13 @@
       "genFavicons": true
     }
   },
-  "scripts": {
-    "start": "parcel",
-    "build": "parcel build && workbox generateSW",
-    "npxbuild": "npx parcel build && npx workbox generateSW",
-    "remotedeploy": "rm -rf ./dist && parcel build --public-url ./ --no-source-maps && workbox generateSW && gh-pages -d dist"
-  },
+  "scripts": {},
   "repository": "github.com/avrebarra/seqret",
   "author": "Avreghly Barra <avreghly@gmail.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@parcel/compressor-raw": "^2.5.0",
     "@parcel/config-default": "^2.5.0",
     "@parcel/core": "^2.5.0",
     "@parcel/packager-raw-url": "2.5.0",

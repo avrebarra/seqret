@@ -112,7 +112,7 @@
   dependencies:
     chalk "^4.1.0"
 
-"@parcel/compressor-raw@2.5.0":
+"@parcel/compressor-raw@2.5.0", "@parcel/compressor-raw@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@parcel/compressor-raw/-/compressor-raw-2.5.0.tgz#8675d7474b84920e1e4682a5bbd9b417ebfc0bc5"
   integrity sha512-I5Zs+2f1ue4sTPdfT8BNsLfTZl48sMWLk2Io3elUJjH/SS9kO7ut5ChkuJtt77ZS35m0OF+ZCt3ICTJdnDG8eA==

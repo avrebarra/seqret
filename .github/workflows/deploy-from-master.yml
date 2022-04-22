@@ -9,7 +9,7 @@ on:
 
 env:
   SHARP_INSTALL_FORCE: true
-  PARCEL_ROUTINGS_BASE_PATH: /seqret/
+  APP_BASE_PATH: seqret/
 
 jobs:
   deploy:
