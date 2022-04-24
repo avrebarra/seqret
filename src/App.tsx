@@ -35,7 +35,7 @@ export function App() {
         <div className="appwrapper flex justify-center items-center h-screen w-screen ">
           <div className="app w-full max-w-lg h-full xs:max-h-144">
             <div className="content p-10 py-16">
-              <BrowserRouter>
+              <BrowserRouter basename={process.env.APP_BASE_PATH}>
                 <React.Suspense fallback={funcRenderLoader()}>
                   <Routes>
                     <Route path="/" element={<Home />} />

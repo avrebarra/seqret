@@ -5,28 +5,31 @@ name: deploy from master
 
 on:
   push:
-    branches: [ master, cisetup ]
+    branches: [ master ]
+
+env:
+  SHARP_INSTALL_FORCE: true
+  APP_BASE_PATH: seqret/
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: yarn install dependencies
-      uses: borales/actions-yarn@v2.3.0
+    - name: Setup node
+      uses: actions/setup-node@v3
       with:
-        cmd: install # will run `yarn install` command
-    - name: yarn install global deps (workbox-cli)
-      uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: global add workbox-cli
-    - name: fix sharp issue (needed)
-      run: npm i --platform=linux sharp
-    - name: make build app
+        node-version: '17'
+        cache: 'yarn'
+    - name: Install dependencies
+      run: yarn
+    - name: Install global deps (workbox-cli)
+      run: yarn global add workbox-cli
+    - name: Build app
       run: make build
-    - name: recreate gh-pages branch
-      run: git branch -D gh-pages && git checkout -b gh-pages
-    - name: promote build
+    - name: Recreate gh-pages branch
+      run: git checkout -b gh-pages
+    - name: Promote build
       run: mv dist /tmp/dist && ls | grep -v ".git" | xargs rm -r && mv /tmp/dist/* .
-    - name: publish build
-      run: git commit -m "updated build" && git push
+    - name: Publish build
+      run: git config --global user.email "ci@github.com" && git config --global user.name "Github CI" && git add --all && git commit -m "updated build" && git push --set-upstream origin gh-pages --force
