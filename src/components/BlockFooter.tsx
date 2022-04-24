@@ -27,7 +27,7 @@ export const Footer: React.FC<Props> = ({}) => {
           </div>
           <div>
             <a href="https://github.com/avrebarra/seqret">
-              check out github repository
+              check out the repo in github
             </a>
           </div>
         </div>
