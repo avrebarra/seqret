@@ -1,12 +1,11 @@
 import * as React from "react";
 
-import { Input } from "baseui/input";
-import { Textarea } from "baseui/textarea";
-import { Button } from "baseui/button";
-import { Select, Value } from "baseui/select";
+import { Select } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { Textarea, Input } from "@chakra-ui/react";
 
-import { QRConstruct } from "../services/qrbuilder";
-import * as algo from "../services/algomap";
+import { QRConstruct } from "../services/qrutils";
+import * as crypto from "../services/crypto.js";
 import config from "../config";
 
 type Props = {
@@ -17,15 +16,11 @@ type Props = {
 
 export const OpenQR: React.FC<Props> = (p) => {
   // context, vars, and states
-  const [readiness, setReadiness] = React.useState<boolean>(false);
-  const [QRData, setQRData] = React.useState<QRConstruct | null>();
-  const [inputAlg, setInputAlg] = React.useState<Value | undefined>(undefined);
-  const [inputKey, setInputKey] = React.useState<string>("");
+  const CRYPTO_ALGO_LIST = config.algorithms;
 
-  const algolist = algo.algorithmMapping.map((e) => ({
-    id: e.id,
-    label: e.label,
-  }));
+  const [QRData, setQRData] = React.useState<QRConstruct | null>();
+  const [inputEncAlgorithm, setEncAlgorithm] = React.useState<string>("");
+  const [inputPassphrase, setPassphrase] = React.useState<string>("");
 
   // helper funcs
   const funcLoadData = async () => {
@@ -40,22 +35,19 @@ export const OpenQR: React.FC<Props> = (p) => {
     // prep and
     if (!QRData?.secret)
       return funcShowErr("Fatal failure. Secret not read/detected.");
-    if (inputAlg == undefined)
+    if (!inputEncAlgorithm)
       return funcShowErr("Please choose encryption method to use.");
-    if (inputKey == "")
+    if (!inputPassphrase)
       return funcShowErr("Please specify a secret key or passphrase.");
 
     // select encryptor
-    const alg = algo.algorithmMapping.find((e) => e.id == inputAlg[0].id);
-    if (alg == undefined) return funcShowErr("Cannot find selected algorithm!");
+    const method = CRYPTO_ALGO_LIST.find((e) => e.id == inputEncAlgorithm);
+    if (!method) return funcShowErr("Cannot find selected algorithm");
 
     // decrypt secret with key
     let secretDecrypted;
     try {
-      secretDecrypted = alg.funcDec({
-        key: inputKey,
-        encvalue: QRData?.secret,
-      });
+      secretDecrypted = method.funcDecrypt(inputPassphrase, QRData?.secret);
     } catch (error) {
       const errmsg = `Parsing errored. Are you sure your algorithm and key correct? Got error: ${error}`;
       return funcShowErr(errmsg);
@@ -72,7 +64,7 @@ export const OpenQR: React.FC<Props> = (p) => {
   // effects
   React.useEffect(() => {
     funcLoadData();
-  }, [readiness]);
+  }, []);
 
   return (
     <>
@@ -82,21 +74,30 @@ export const OpenQR: React.FC<Props> = (p) => {
           disabled={true}
         />
         <Select
-          options={algolist}
-          value={inputAlg}
+          borderRadius={0}
           placeholder="select encryption method"
-          onChange={(params) => setInputAlg(params.value)}
-          clearable={false}
-        />
+          onChange={(e) => setEncAlgorithm(e.target.value)}
+        >
+          {CRYPTO_ALGO_LIST.map((v) => {
+            return <option value={v.id}>{v.label}</option>;
+          })}
+        </Select>
         <Input
-          value={inputKey}
-          onChange={(e) => setInputKey(e.currentTarget.value)}
-          placeholder="enter key or passphrase"
+          borderRadius={0}
+          value={inputPassphrase}
+          onChange={(e) => setPassphrase(e.currentTarget.value)}
+          placeholder="enter a passphrase"
           type="password"
-          clearOnEscape
         />
         <div>
-          <Button onClick={() => funcOnOpenSecret()} size="large">
+          <Button
+            bg="black"
+            size="lg"
+            color="white"
+            _hover={{ bg: "blackAlpha.800" }}
+            borderRadius={0}
+            onClick={() => funcOnOpenSecret()}
+          >
             Open Secret
           </Button>
         </div>
