@@ -1,19 +1,19 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "baseui/button";
-import { Show } from "baseui/icon";
+import { Button } from "@chakra-ui/react";
+import { UnlockIcon } from "@chakra-ui/icons";
 
 import config from "../config";
 
 type Props = {};
 
-export const Home: React.FC<Props> = ({ }) => {
+export const Home: React.FC<Props> = ({}) => {
   // context, vars, and states
   const [readiness, setReadiness] = React.useState<boolean>(false);
 
   // helper funcs
-  const funcLoadData = async () => { };
+  const funcLoadData = async () => {};
 
   // effects
   React.useEffect(() => {
@@ -42,20 +42,36 @@ export const Home: React.FC<Props> = ({ }) => {
       </div>
       <br />
       <div>
-        <Link className="hover:text-neutral-900" to={`/create`}>
-          <Button size="large">Create New</Button>
+        <Link to={`/create`}>
+          <Button
+            bg="black"
+            size="lg"
+            color="white"
+            _hover={{ bg: "blackAlpha.800" }}
+            borderRadius={0}
+          >
+            Create New
+          </Button>
         </Link>
       </div>
       <div>
-        <Link className="hover:text-neutral-900" to={`/scan`}>
-          <Button endEnhancer={() => <Show size={20} />}>
+        <Link to={`/scan`}>
+          <Button
+            bg="black"
+            size="lg"
+            color="white"
+            _hover={{ bg: "blackAlpha.800" }}
+            borderRadius={0}
+          >
             Read From QR Code
           </Button>
         </Link>
       </div>
       <div>
         <Link to={`/faqs`}>
-          <Button kind="secondary">Open the FAQs</Button>
+          <Button colorScheme="gray" size={"lg"} borderRadius={0}>
+            Open the FAQs
+          </Button>
         </Link>
       </div>
     </>

@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { Link } from "react-router-dom";
-import { Textarea } from "baseui/textarea";
-import { Button } from "baseui/button";
+import { Button } from "@chakra-ui/react";
+import { Textarea } from "@chakra-ui/react";
 
 import config from "../config";
 
@@ -11,10 +11,10 @@ type Props = {
   onBackButtonClick: () => void;
 };
 
-export const ShowSecret: React.FC<Props> = (p) => {
+export const ShowSecret: React.FC<Props> = (props) => {
   // context, vars, and states
   const [readiness, setReadiness] = React.useState<boolean>(false);
-  const [secret] = React.useState<string>(p.secret);
+  const [secret, setSecret] = React.useState<string>(props.secret);
 
   // helper funcs
   const funcLoadData = async () => {};
@@ -27,10 +27,16 @@ export const ShowSecret: React.FC<Props> = (p) => {
   return (
     <>
       <div className="flex flex-col space-y-2">
-        <Textarea value={secret} />
+        <Textarea readOnly={true} value={secret} />
         <div>
           <Link to="/">
-            <Button kind="primary" size="large">
+            <Button
+              bg="black"
+              size="lg"
+              color="white"
+              _hover={{ bg: "blackAlpha.800" }}
+              borderRadius={0}
+            >
               Back to Home
             </Button>
           </Link>

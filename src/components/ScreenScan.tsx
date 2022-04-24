@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { toaster } from "baseui/toast";
+import { useToast } from "@chakra-ui/react";
+
 import { ScreenTitle } from "./BlockScreenTitle";
 import { ScanQR } from "./ScreenScan.ScanQR";
 import { OpenQR } from "./ScreenScan.OpenQR";
@@ -10,17 +11,25 @@ import config from "../config";
 
 type Props = {};
 
-export const Scan: React.FC<Props> = ({ }) => {
+export const Scan: React.FC<Props> = ({}) => {
   // context, vars, and states
+  const toast = useToast();
   const [readiness, setReadiness] = React.useState<boolean>(false);
   const [rawQR, setRawQR] = React.useState<string>("");
   const [rawSecret, setRawSecret] = React.useState<string>("");
 
   // helper funcs
   const funcShowErr = async (msg: string) => {
-    toaster.negative(msg, {});
+    toast({
+      title: "Invalid Input Data",
+      description: msg,
+      status: "error",
+      duration: 3000,
+      position: "top",
+      isClosable: true,
+    });
   };
-  const funcLoad = async () => { };
+  const funcLoad = async () => {};
 
   // effects
   React.useEffect(() => {
